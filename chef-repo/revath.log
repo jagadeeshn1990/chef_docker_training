@@ -7447,4 +7447,125 @@ fatal: unable to access 'https://github.com/msrevathi/chefRepo.git/': Failed con
 ]0;root@localhost:~/kamlesh[root@localhost kamlesh]#  git push https://github.com/msrevathi/chefRepo.git
 fatal: unable to access 'https://github.com/msrevathi/chefRepo.git/': Received HTTP code 403 from proxy after CONNECT
 ]0;root@localhost:~/kamlesh[root@localhost kamlesh]# unset http_proxy
-]0;root@localhost:~/kamlesh[root@localhost kamlesh]# export http_proxy=http://172.28
+]0;root@localhost:~/kamlesh[root@localhost kamlesh]# export http_proxy=http://172.28.1.12:9991/
+]0;root@localhost:~/kamlesh[root@localhost kamlesh]# systemctl restart network
+]0;root@localhost:~/kamlesh[root@localhost kamlesh]# systemctl restart networkexport http_proxy=http://172.28.1.12:9991/[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[26Punset http_proxy git push https://github.com/msrevathi/chefRepo.git
+fatal: unable to access 'https://github.com/msrevathi/chefRepo.git/': Received HTTP code 403 from proxy after CONNECT
+]0;root@localhost:~/kamlesh[root@localhost kamlesh]#  git push https://github.com/msrevathi/chefRepo.git chef-repo master
+fatal: unable to access 'https://github.com/msrevathi/chefRepo.git/': Received HTTP code 403 from proxy after CONNECT
+]0;root@localhost:~/kamlesh[root@localhost kamlesh]#  git push https://github.com/msrevathi/chefRepo.git chef-repo master[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kmaster
+fatal: unable to access 'https://github.com/msrevathi/chefRepo.git/': Received HTTP code 403 from proxy after CONNECT
+]0;root@localhost:~/kamlesh[root@localhost kamlesh]# git [K[K[K[Kls -lrt
+total 16
+drwxr-xr-x. 2 root root   27 Aug  2 16:43 [0m[01;34mDir1[0m
+-rw-r--r--. 1 root root   21 Aug  2 17:07 firstfile123.txt
+-rw-r--r--. 1 root root   21 Aug  2 17:11 secondfile.txt
+-rw-r--r--. 1 root root 3955 Aug  2 17:45 notes.txt
+drwxr-xr-x. 5 root root 4096 Aug  2 17:46 [01;34mchef-repo[0m
+]0;root@localhost:~/kamlesh[root@localhost kamlesh]# git add chef-repo
+]0;root@localhost:~/kamlesh[root@localhost kamlesh]# git add chef-repo[10Pls -lrt git push https://github.com/msrevathi/chefRepo.git master[K[K[K[K[K[Kmaster
+fatal: unable to access 'https://github.com/msrevathi/chefRepo.git/': Received HTTP code 403 from proxy after CONNECT
+]0;root@localhost:~/kamlesh[root@localhost kamlesh]#  git push https://github.com/msrevathi/chefRepo.git master[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cgit add chef-repo[K[10Pls -lrt git push https://github.com/msrevathi/chefRepo.git master[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kgit commit [K -m" [K[K "[K"chef"[1P"chef"
+[master (root-commit) 3f87f47] chef
+ 86 files changed, 20754 insertions(+)
+ create mode 100644 chef-repo/cookbooks/expert_chef_httpd/.gitignore
+ create mode 100644 chef-repo/cookbooks/expert_chef_httpd/.kitchen.yml
+ create mode 100644 chef-repo/cookbooks/expert_chef_httpd/Berksfile
+ create mode 100644 chef-repo/cookbooks/expert_chef_httpd/README.md
+ create mode 100644 chef-repo/cookbooks/expert_chef_httpd/chefignore
+ create mode 100644 chef-repo/cookbooks/expert_chef_httpd/metadata.rb
+ create mode 100644 chef-repo/cookbooks/expert_chef_httpd/recipes/default.rb
+ create mode 100644 chef-repo/cookbooks/expert_chef_httpd/recipes/first.rb
+ create mode 100644 chef-repo/cookbooks/expert_chef_httpd/spec/spec_helper.rb
+ create mode 100644 chef-repo/cookbooks/expert_chef_httpd/spec/unit/recipes/default_spec.rb
+ create mode 100644 chef-repo/cookbooks/expert_chef_httpd/test/integration/default/serverspec/default_spec.rb
+ create mode 100644 chef-repo/cookbooks/expert_chef_httpd/test/integration/helpers/serverspec/spec_helper.rb
+ create mode 100644 chef-repo/cookbooks/jre/.gitignore
+ create mode 100644 chef-repo/cookbooks/jre/.kitchen.yml
+ create mode 100644 chef-repo/cookbooks/jre/Berksfile
+ create mode 100644 chef-repo/cookbooks/jre/README.md
+ create mode 100644 chef-repo/cookbooks/jre/chefignore
+ create mode 100644 chef-repo/cookbooks/jre/metadata.rb
+ create mode 100644 chef-repo/cookbooks/jre/recipes/default.rb
+ create mode 100644 chef-repo/cookbooks/jre/spec/spec_helper.rb
+ create mode 100644 chef-repo/cookbooks/jre/spec/unit/recipes/default_spec.rb
+ create mode 100644 chef-repo/cookbooks/jre/test/integration/default/serverspec/default_spec.rb
+ create mode 100644 chef-repo/cookbooks/jre/test/integration/helpers/serverspec/spec_helper.rb
+ create mode 100644 chef-repo/cookbooks/learn_chef_httpd/.gitignore
+ create mode 100644 chef-repo/cookbooks/learn_chef_httpd/.kitchen.yml
+ create mode 100644 chef-repo/cookbooks/learn_chef_httpd/Berksfile
+ create mode 100644 chef-repo/cookbooks/learn_chef_httpd/README.md
+ create mode 100644 chef-repo/cookbooks/learn_chef_httpd/chefignore
+ create mode 100644 chef-repo/cookbooks/learn_chef_httpd/metadata.rb
+ create mode 100644 chef-repo/cookbooks/learn_chef_httpd/nodes/localhost.json
+ create mode 100644 chef-repo/cookbooks/learn_chef_httpd/recipes/bkp.first.rb
+ create mode 100644 chef-repo/cookbooks/learn_chef_httpd/recipes/default.rb
+ create mode 100644 chef-repo/cookbooks/learn_chef_httpd/recipes/dummy.rb
+ create mode 100644 chef-repo/cookbooks/learn_chef_httpd/recipes/install_apache.rb
+ create mode 100644 chef-repo/cookbooks/learn_chef_httpd/recipes/nodes/localhost.json
+ create mode 100644 chef-repo/cookbooks/learn_chef_httpd/recipes/second.rb
+ create mode 100644 chef-repo/cookbooks/learn_chef_httpd/recipes/update_index.rb
+ create mode 100644 chef-repo/cookbooks/learn_chef_httpd/spec/spec_helper.rb
+ create mode 100644 chef-repo/cookbooks/learn_chef_httpd/spec/unit/recipes/default_spec.rb
+ create mode 100644 chef-repo/cookbooks/learn_chef_httpd/test/integration/default/serverspec/default_spec.rb
+ create mode 100644 chef-repo/cookbooks/learn_chef_httpd/test/integration/helpers/serverspec/spec_helper.rb
+ create mode 100644 chef-repo/cookbooks/softwarex/.gitignore
+ create mode 100644 chef-repo/cookbooks/softwarex/.kitchen.yml
+ create mode 100644 chef-repo/cookbooks/softwarex/Berksfile
+ create mode 100644 chef-repo/cookbooks/softwarex/README.md
+ create mode 100644 chef-repo/cookbooks/softwarex/chefignore
+ create mode 100644 chef-repo/cookbooks/softwarex/metadata.rb
+ create mode 100644 chef-repo/cookbooks/softwarex/one.rb
+ create mode 100644 chef-repo/cookbooks/softwarex/recipes/default.rb
+ create mode 100644 chef-repo/cookbooks/softwarex/recipes/one.rb
+ create mode 100644 chef-repo/cookbooks/softwarex/spec/spec_helper.rb
+ create mode 100644 chef-repo/cookbooks/softwarex/spec/unit/recipes/default_spec.rb
+ create mode 100644 chef-repo/cookbooks/softwarex/templates/default/index.html.erb
+ create mode 100644 chef-repo/cookbooks/softwarex/test/integration/default/serverspec/default_spec.rb
+ create mode 100644 chef-repo/cookbooks/softwarex/test/integration/helpers/serverspec/spec_helper.rb
+ create mode 100644 chef-repo/dummmy.txt
+ create mode 100644 chef-repo/dummy.rb
+ create mode 100755 chef-repo/dummy.sh
+ create mode 100644 chef-repo/first.rb
+ create mode 100644 chef-repo/index.html
+ create mode 100644 chef-repo/install_apache.rb
+ create mode 100644 chef-repo/install_nginx.rb
+ create mode 100644 chef-repo/learn_chef_httpd/.gitignore
+ create mode 100644 chef-repo/learn_chef_httpd/.kitchen.yml
+ create mode 100644 chef-repo/learn_chef_httpd/Berksfile
+ create mode 100644 chef-repo/learn_chef_httpd/README.md
+ create mode 100644 chef-repo/learn_chef_httpd/chefignore
+ create mode 100644 chef-repo/learn_chef_httpd/metadata.rb
+ create mode 100644 chef-repo/learn_chef_httpd/nodes/localhost.json
+ create mode 100644 chef-repo/learn_chef_httpd/recipes/default.rb
+ create mode 100644 chef-repo/learn_chef_httpd/recipes/dummy.rb
+ create mode 100644 chef-repo/learn_chef_httpd/recipes/first.rb
+ create mode 100644 chef-repo/learn_chef_httpd/recipes/install_apache.rb
+ create mode 100644 chef-repo/learn_chef_httpd/recipes/nodes/localhost.json
+ create mode 100644 chef-repo/learn_chef_httpd/recipes/second.rb
+ create mode 100644 chef-repo/learn_chef_httpd/recipes/update_index.rb
+ create mode 100644 chef-repo/learn_chef_httpd/spec/spec_helper.rb
+ create mode 100644 chef-repo/learn_chef_httpd/spec/unit/recipes/default_spec.rb
+ create mode 100644 chef-repo/learn_chef_httpd/test/integration/default/serverspec/default_spec.rb
+ create mode 100644 chef-repo/learn_chef_httpd/test/integration/helpers/serverspec/spec_helper.rb
+ create mode 100644 chef-repo/nodes/localhost.json
+ create mode 100644 chef-repo/notes.txt
+ create mode 100644 chef-repo/revath.log
+ create mode 100644 chef-repo/second.rb
+ create mode 100644 chef-repo/test.txt
+ create mode 100644 chef-repo/update_index.rb
+]0;root@localhost:~/kamlesh[root@localhost kamlesh]# git commit -m"chef" git push https://github.com/msrevathi/chefRepo.git master[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cgit add chef-repo[K[10Pls -lrtgit add chef-repo[10Pls -lrt git push https://github.com/msrevathi/chefRepo.git master
+fatal: unable to access 'https://github.com/msrevathi/chefRepo.git/': Received HTTP code 403 from proxy after CONNECT
+]0;root@localhost:~/kamlesh[root@localhost kamlesh]# git remote add cheURL [1@f[C[C[C[C h t t p s : / / g i t h u b . c o m / m s r e v a t h i / c h e f R e p o . g i t 
+]0;root@localhost:~/kamlesh[root@localhost kamlesh]# git push -f chefURL master
+Username for 'https://github.com': msrevathi
+Password for 'https://msrevathi@github.com': 
+Counting objects: 95, done.
+Delta compression using up to 2 threads.
+Compressing objects:   1% (1/60)   Compressing objects:   3% (2/60)   Compressing objects:   5% (3/60)   Compressing objects:   6% (4/60)   Compressing objects:   8% (5/60)   Compressing objects:  10% (6/60)   Compressing objects:  11% (7/60)   Compressing objects:  13% (8/60)   Compressing objects:  15% (9/60)   Compressing objects:  16% (10/60)   Compressing objects:  18% (11/60)   Compressing objects:  20% (12/60)   Compressing objects:  21% (13/60)   Compressing objects:  23% (14/60)   Compressing objects:  25% (15/60)   Compressing objects:  26% (16/60)   Compressing objects:  28% (17/60)   Compressing objects:  30% (18/60)   Compressing objects:  31% (19/60)   Compressing objects:  33% (20/60)   Compressing objects:  35% (21/60)   Compressing objects:  36% (22/60)   Compressing objects:  38% (23/60)   Compressing objects:  40% (24/60)   Compressing objects:  41% (25/60)   Compressing objects:  43% (26/60)   Compressing objects:  45% (27/60)   Compressing objects:  46% (28/60)   Compressing objects:  48% (29/60)   Compressing objects:  50% (30/60)   Compressing objects:  51% (31/60)   Compressing objects:  53% (32/60)   Compressing objects:  55% (33/60)   Compressing objects:  56% (34/60)   Compressing objects:  58% (35/60)   Compressing objects:  60% (36/60)   Compressing objects:  61% (37/60)   Compressing objects:  63% (38/60)   Compressing objects:  65% (39/60)   Compressing objects:  66% (40/60)   Compressing objects:  68% (41/60)   Compressing objects:  70% (42/60)   Compressing objects:  71% (43/60)   Compressing objects:  73% (44/60)   Compressing objects:  75% (45/60)   Compressing objects:  76% (46/60)   Compressing objects:  78% (47/60)   Compressing objects:  80% (48/60)   Compressing objects:  81% (49/60)   Compressing objects:  83% (50/60)   Compressing objects:  85% (51/60)   Compressing objects:  86% (52/60)   Compressing objects:  88% (53/60)   Compressing objects:  90% (54/60)   Compressing objects:  91% (55/60)   Compressing objects:  93% (56/60)   Compressing objects:  95% (57/60)   Compressing objects:  96% (58/60)   Compressing objects:  98% (59/60)   Compressing objects: 100% (60/60)   Compressing objects: 100% (60/60), done.
+Writing objects:   1% (1/95)   Writing objects:   2% (2/95)   Writing objects:   3% (3/95)   Writing objects:   4% (4/95)   Writing objects:   5% (5/95)   Writing objects:   6% (6/95)   Writing objects:   8% (8/95)   Writing objects:   9% (9/95)   Writing objects:  10% (10/95)   Writing objects:  11% (11/95)   Writing objects:  13% (13/95)   Writing objects:  14% (14/95)   Writing objects:  16% (16/95)   Writing objects:  17% (17/95)   Writing objects:  18% (18/95)   Writing objects:  20% (19/95)   Writing objects:  21% (20/95)   Writing objects:  22% (21/95)   Writing objects:  23% (22/95)   Writing objects:  24% (23/95)   Writing objects:  25% (24/95)   Writing objects:  26% (25/95)   Writing objects:  27% (26/95)   Writing objects:  28% (27/95)   Writing objects:  29% (28/95)   Writing objects:  30% (29/95)   Writing objects:  31% (30/95)   Writing objects:  32% (31/95)   Writing objects:  33% (32/95)   Writing objects:  34% (33/95)   Writing objects:  35% (34/95)   Writing objects:  36% (35/95)   Writing objects:  37% (36/95)   Writing objects:  38% (37/95)   Writing objects:  40% (38/95)   Writing objects:  41% (39/95)   Writing objects:  42% (40/95)   Writing objects:  43% (41/95)   Writing objects:  44% (42/95)   Writing objects:  45% (43/95)   Writing objects:  46% (44/95)   Writing objects:  47% (45/95)   Writing objects:  48% (46/95)   Writing objects:  49% (47/95)   Writing objects:  50% (48/95)   Writing objects:  51% (49/95)   Writing objects:  52% (50/95)   Writing objects:  53% (51/95)   Writing objects:  54% (52/95)   Writing objects:  55% (53/95)   Writing objects:  57% (55/95)   Writing objects:  58% (56/95)   Writing objects:  60% (57/95)   Writing objects:  61% (58/95)   Writing objects:  62% (59/95)   Writing objects:  63% (60/95)   Writing objects:  64% (61/95)   Writing objects:  65% (62/95)   Writing objects:  66% (63/95)   Writing objects:  67% (64/95)   Writing objects:  68% (65/95)   Writing objects:  69% (66/95)   Writing objects:  70% (67/95)   Writing objects:  71% (68/95)   Writing objects:  72% (69/95)   Writing objects:  73% (70/95)   Writing objects:  74% (71/95)   Writing objects:  75% (72/95)   Writing objects:  76% (73/95)   Writing objects:  77% (74/95)   Writing objects:  78% (75/95)   Writing objects:  80% (76/95)   Writing objects:  81% (77/95)   Writing objects:  82% (78/95)   Writing objects:  83% (79/95)   Writing objects:  84% (80/95)   Writing objects:  85% (81/95)   Writing objects:  86% (82/95)   Writing objects:  87% (83/95)   Writing objects:  88% (84/95)   Writing objects:  89% (85/95)   Writing objects:  90% (86/95)   Writing objects:  91% (87/95)   Writing objects:  92% (88/95)   Writing objects:  93% (89/95)   Writing objects:  94% (90/95)   Writing objects:  95% (91/95)   Writing objects:  96% (92/95)   Writing objects:  97% (93/95)   Writing objects:  98% (94/95)   Writing objects: 100% (95/95)   Writing objects: 100% (95/95), 77.92 KiB | 0 bytes/s, done.
+Total 95 (delta 21), reused 0 (delta 0)
+To https://github.com/msrevathi/chefRepo.git
+ + 0f87c6a...3f87f47 master -> master (forced update)
+]0;root@localhost:~/kamlesh[root@localhost kamlesh]# vi
+[?1049h[?1h=[1;44r[?12;25h[?12l[?25h[27m[m[H[2J[?25l[2;1H[1m[34m~                                                                                                                                                                       [3;1H~                                                                                                                                                                       [4;1H~                                                                                                                                                                       [5;1H~                                                                                                                                                                       [6;1H~                                                                                                                                                                       [7;1H~                                                                                                                                                                       [8;1H~                                                                                                                                                                       [9;1H~                                                                                                                                                                       [10;1H~                                                                                                                                                                       [11;1H~                                                                                                                                                                       [12;1H~                                                                                                                                                                       [13;1H~                                                                                                                                                                       [14;1H~                                                                                                                                                                       [15;1H~                                                                                                                                                                       [16;1H~                                                                                                                                                                       [17;1H~                                                                                                                                                                       [18;1H~                                                                                                                                                                       [19;1H~                                                                                                                                                                       [20;1H~                                                                                                                                                                       [21;1H~                                                                                                                                                                       [22;1H~                                                                                                                                                                       [23;1H~                                                                                                                                                                       [24;1H~                                                                                                                                                                       [25;1H~                                                                                                                                                                       [26;1H~                                                                                                                                                                       [27;1H~                                                                                                                                                                       [28;1H~                                                                                                                                                                       [29;1H~                                                                                                                                                                       [30;1H~                                                                                                                                                                       [31;1H~                                                                                                                                                                       [32;1H~                                                                                                     
