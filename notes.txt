@@ -1,0 +1,219 @@
+share drive : \\172.28.2.251
+
+User Name : 2109870
+Password : newuser_123
+
+ID : msrevathi
+
+Programs Path : /root/kamlesh/chef-repo
+
+git hub url : https://github.com/msrevathi/Repo_one.git
+
+Log Path: this will save all our actions in this file
+
+script kamleshChef.log
+
+ /root/kamleshChef.log
+
+
+Resources link : https://docs.chef.io/resource_file.html
+
+
+Seet the Below Command to avoid the http block:
+
+[root@localhost chef-repo]# export HTTPS_PROXY=172.28.1.12:9991
+[root@localhost chef-repo]# export HTTP_PROXY=172.28.1.12:9991
+
+
+alhost chef-repo]# kill -9 12590
+[root@localhost chef-repo]# unset https_proxy
+[root@localhost chef-repo]# unset http_proxy
+[root@localhost chef-repo]# export http_proxy=http://172.28.1.12:9991/
+[root@localhost chef-repo]# export https_proxy=https://172.28.1.12:9991/
+[root@localhost chef-repo]# systemctl restart network
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---------------------------  PROGRAMS----------------------
+------deleting file-------
+ cat first.rb
+file 'firstfile.txt' do
+        content "This is my First File"
+end
+
+file 'firstfile.txt' do
+        action :delete
+end
+
+
+
+
+-----* creating a directory and a file inside the dir----
+
+ cat second.rb
+directory '/root/kamlesh/Dir1' do
+  owner 'root'
+  group 'root'
+  mode '0755'
+end
+
+file "/root/kamlesh/Dir1/secondfile.txt" do
+        content "Second File Created"
+
+end
+
+
+
+-----* Program to install the APACHE2 ---- 
+Note: Check if supporting apache2 or httpd based on our OS(centos support httpd) using 
+
+yum list httpd/apache 2
+
+
+
+cat install_apache.rb
+package 'Install Apache' do
+    package_name 'httpd'
+end
+
+or
+
+package  'httpd'
+
+
+
+O/P: 
+ chef-apply install_apache.rb
+Recipe: (chef-apply cookbook)::(chef-apply recipe)
+  * yum_package[Install Apache] action install
+    - install version 2.4.6-40.el7.centos.4 of package httpd
+[root@localhost chef-repo]# yum list httpd
+Loaded plugins: fastestmirror, langpacks
+Loading mirror speeds from cached hostfile
+ * base: centos-hcm.viettelidc.com.vn
+ * extras: centos-hn.viettelidc.com.vn
+ * updates: centos-hcm.viettelidc.com.vn
+Installed Packages
+httpd.x86_64                 
+
+
+
+-----*  ---- 
+
+ service httpd start
+ service httpd status
+
+Test your Appache:  
+http://127.0.0.1/   {IP is your current host/VM IP}
+
+
+
+----------* Replace the index.html of httpd from your own----------
+
+1- write your own index.html and go to the current dir
+2- script 'update index.html' do
+  interpreter "bash"
+  code <<-EOH
+        cp -rf index.html /usr/share/httpd/noindex/index.html
+    EOH
+end
+
+o/P: It will replace the index.html
+
+to get the path of index.html from httpd use the below command
+
+cd /etc/httpd
+ls -laRt
+less ./conf.d/welcome.conf
+
+
+
+-----------------------------*** Create a program to call script and execute it through bash-------
+
+cat dummy.rb
+bash 'execute' do
+  code <<-EOH
+     ./dummy.sh
+    EOH
+end
+
+
+Note: dummy.sh has been created one more filein same dir.
+
+
+----log---------------------
+
+[root@localhost chef-repo]# cat  dummy.rb
+bash 'execute' do
+  code <<-EOH
+     ./dummy.sh
+
+   EOH
+end
+
+Chef::Log.info("hello")
+log 'message' do
+#       action :nothing
+         message "A message add to the log."
+          level :info
+end
+
+---------and run like below: 
+
+
+ chef-apply dummy.rb -l info
+
+
+-----------------**  Write a command to create cookbook ---------------
+chef generate cookbook learn_chef_httpd
+
+
+---  To RUn the cookbooks, whick will call default.rb recieps ------------------
+
+chef-client --local-mode --runlist 'recipe[learn_chef_httpd]'
+
+chef-client --local-mode --runlist 'recipe[learn_chef_httpd::service]'
+
+---------***** ****------------------
+
+creating template :
+
+ chef generate template softwarex index.html
+
+
+
+
+--------------------------------------------------------------------
+
+
+<html>
+  <head>
+       <title>
+             This is my Chef
+       </title>
+   
+  </head>
+
+<body bgcolor=red>
+<h1>HELLO !!!</h1>
+
+ <table>  
+    <tr>
+       <td>NAME</td>        <td>KAMLESH</td>
+    </tr>
+ </table>
+</html>

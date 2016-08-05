@@ -1,0 +1,125 @@
+> to install docker
+
+yum install docker
+
+> to check the path
+
+which docker --/usr/bin/docker
+
+> To start docker
+  systemctl start docker
+
+> to check no of env
+
+docker info
+
+> to download jenkin image from docker hub
+
+docker pull jenkin
+
+> to check the images available
+
+docker images
+
+> some more images
+docker pull joomla
+
+docker pull wordpress
+
+docker pull jenkins
+
+docker pull sonatype/nexus
+
+docker pull cptactionhank/atlassian-jira
+
+docker pull ubuntu
+
+>
+
+docker run -p 8080:8080 -p 50000:50000 -v /your/home:/var/jenkins_home jenkins
+
+8080:8080 -->system port : jenkins port
+
+-v  -->  where thed ata files is stored
+
+/your/home:/var/jenkins_home  --> system hoem:  jenkin home
+
+> dcoker help run
+
+
+> to create container 
+
+docker run -p 8080:8080 -p 50000:50000 -u root -v /your/home:/var/jenkins_home jenkins
+
+or
+ docker run -p 8090:8090 -p 50000:50000 -u root -v $PWD/jenkins:/var/jenkins_home jenkins
+ docker run -p 8090:8090 -u root -v $PWD/jenkins:/var/jenkins_home jenkins
+
+> To remove image
+
+docker rmi jenkins
+
+>To delete container
+
+ docker rm jenkins
+
+> to login to container
+
+docker run -it ubuntu /bin/bash
+
+> Exit the running container without stopping the container
+
+# exit
+
+> Exit the running container with stopping the container
+
+ctrl+p+q
+
+> Login the running container for bash prompt
+
+# sudo docker exec -i -t 2e56ad1705b1 /bin/bas
+
+> creating new image form existing images
+
+1. create a container for a image to which you want to create new Image(creating new image from existing image)
+
+ docker run -it ubuntu /bin/bash
+
+2.do the changes in the conatiner --eg: create some files/dir /insatll new package like git
+
+apt-get install git or touch file1.txt
+
+3.exit
+
+4. get the container id from docker images
+
+5. commit the newly created image by giving name and tag(versio), user name
+
+
+docker commit -m"this is new" -a "Raj" 6c6685c6f1a5 revathi/ub2:v3
+
+
+6.Run the conatiner for the newkly created image now
+
+docker run -it revathi/ub2:v3 /bin/bash
+
+---------------------------
+
+creating NEW IAMGE
+
+
+1.mkdir sinstra1
+
+2.cd sinstra1
+
+3.touch Dockerfil1
+
+4.vi Dockerfil1
+
+FROM ubuntu:14.04
+MAINTAINER Revathi MS <revathi@gmail.com>
+RUN touch xyz.conf
+
+
+5. docker build -t  myimagebabu:v1 .
+

@@ -1,0 +1,431 @@
+share drive : \\172.28.2.251
+
+User Name : 2109870
+Password : newuser_123
+
+ID : msrevathi
+
+Programs Path : /root/kamlesh/chef-repo
+
+git hub url : https://github.com/msrevathi/Repo_one.git
+
+Log Path: this will save all our actions in this file
+
+script kamleshChef.log
+
+ /root/kamleshChef.log
+
+
+Resources link : https://docs.chef.io/resource_file.html
+
+
+Seet the Below Command to avoid the http block:
+
+[root@localhost chef-repo]# export HTTPS_PROXY=172.28.1.12:9991
+[root@localhost chef-repo]# export HTTP_PROXY=172.28.1.12:9991
+
+
+alhost chef-repo]# kill -9 12590
+unset https_proxy
+unset http_proxy
+export http_proxy=http://172.28.1.12:9991/
+export https_proxy=https://172.28.1.12:9991/
+systemctl restart network
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---------------------------  PROGRAMS----------------------
+------deleting file-------
+ cat first.rb
+file 'firstfile.txt' do
+        content "This is my First File"
+end
+
+file 'firstfile.txt' do
+        action :delete
+end
+
+
+
+
+-----* creating a directory and a file inside the dir----
+
+ cat second.rb
+directory '/root/kamlesh/Dir1' do
+  owner 'root'
+  group 'root'
+  mode '0755'
+end
+
+file "/root/kamlesh/Dir1/secondfile.txt" do
+        content "Second File Created"
+
+end
+
+
+
+-----* Program to install the APACHE2 ---- 
+Note: Check if supporting apache2 or httpd based on our OS(centos support httpd) using 
+
+yum list httpd/apache 2
+
+
+
+cat install_apache.rb
+package 'Install Apache' do
+    package_name 'httpd'
+end
+
+or
+
+package  'httpd'
+
+
+
+O/P: 
+ chef-apply install_apache.rb
+Recipe: (chef-apply cookbook)::(chef-apply recipe)
+  * yum_package[Install Apache] action install
+    - install version 2.4.6-40.el7.centos.4 of package httpd
+[root@localhost chef-repo]# yum list httpd
+Loaded plugins: fastestmirror, langpacks
+Loading mirror speeds from cached hostfile
+ * base: centos-hcm.viettelidc.com.vn
+ * extras: centos-hn.viettelidc.com.vn
+ * updates: centos-hcm.viettelidc.com.vn
+Installed Packages
+httpd.x86_64                 
+
+
+
+-----*  ---- 
+
+ service httpd start
+ service httpd status
+
+Test your Appache:  
+http://127.0.0.1/   {IP is your current host/VM IP}
+
+
+
+----------* Replace the index.html of httpd from your own----------
+
+1- write your own index.html and go to the current dir
+2- script 'update index.html' do
+  interpreter "bash"
+  code <<-EOH
+        cp -rf index.html /usr/share/httpd/noindex/index.html
+    EOH
+end
+
+o/P: It will replace the index.html
+
+to get the path of index.html from httpd use the below command
+
+cd /etc/httpd
+ls -laRt
+less ./conf.d/welcome.conf
+
+
+
+-----------------------------*** Create a program to call script and execute it through bash-------
+
+cat dummy.rb
+bash 'execute' do
+  code <<-EOH
+     ./dummy.sh
+    EOH
+end
+
+
+Note: dummy.sh has been created one more filein same dir.
+
+
+----log---------------------
+
+[root@localhost chef-repo]# cat  dummy.rb
+bash 'execute' do
+  code <<-EOH
+     ./dummy.sh
+
+   EOH
+end
+
+Chef::Log.info("hello")
+log 'message' do
+#       action :nothing
+         message "A message add to the log."
+          level :info
+end
+
+---------and run like below: 
+
+
+ chef-apply dummy.rb -l info
+
+
+-----------------**  Write a command to create cookbook ---------------
+chef generate cookbook learn_chef_httpd
+
+
+---  To RUn the cookbooks, whick will call default.rb recieps ------------------
+
+chef-client --local-mode --runlist 'recipe[learn_chef_httpd]'
+
+chef-client --local-mode --runlist 'recipe[learn_chef_httpd::service]'
+
+---------***** ****------------------
+
+creating template :
+
+ chef generate template softwarex index.html
+
+
+
+
+--------------------------------------------------------------------
+
+
+
+
+
+
+https://github.com/msrevathi/chefRepo/tree/master/chef-repo/cookbooks;
+
+https://github.com/msrevathi/chefRepo.git
+
+
+----------------------------------------------------------------------------
+
+
+
+Push the Content to GIT repository:
+
+ git push https://github.com/msrevathi/chefRepo.git master
+fatal: unable to access 'https://github.com/msrevathi/chefRepo.git/': Received HTTP code 403 from proxy after CONNECT
+[root@localhost kamlesh]# git commit -m"chef"
+
+
+----------------------using the chef default server-----------------
+
+1. registerhere :  https://manage.chef.io
+2. verification
+3.create organaization
+4.download the chef starter
+5.copy to the node machine
+6.unzip,it will create below file
+
+roles
+README.md
+cookbooks
+
+7.Now copy some cook books to the cookbook folder here
+8.upload 
+
+ knife cookbook upload jre
+
+9.register nodes
+
+knife bootstrap -N node_1 172.28.3.134 -x root -p root123 -sudo
+
+10.
+
+
+---------------Installing chef server-------------
+
+1. copy chef-server-core-12.8.0-1.el7.x86_64 (1).rpm  from sgared dir 
+2. inatall like below
+
+rpm -ivh "chef-server-core-12.8.0-1.el7.x86_64 (1).rpm"
+
+3.
+ sudo cat /etc/hosts
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6 chef-server-kamlesh
+127.0.1.1 172.28.3.134 chef-server-kamlesh
+127.0.1.1 localhost
+172.28.3.134 172.28.3.134 chef-server-kamlesh
+
+4.
+hostnamectl set-hostname chef-server-kamlesh
+
+5.
+chef-server-ctl reconfigure
+
+6.to check the services that are running on the server
+
+chef-server--ctl status
+
+7.To test if chef-server is installed properly or not
+
+chef-server-ctl test
+
+8. create access/register in chef-server
+
+chef-server-ctl user-create kamleshnit07  kamlesh mishra kamleshnit07@gmail.com 'password123' --filename /root/chefserver/.chef/kamleshnit07.pem
+
+this will create a user with password and also kamleshnit07.pem file under the given path
+
+9.to check the users
+
+chef-server-ctl user-list
+
+10. create organasation
+
+chef-server-ctl org-create krj 'Kamlesh_revathi_jagadeesh' --association_user kamleshnit07 --filename /root/chefserver/krj-validator.pem
+
+chef-server-ctl org-list
+
+
+-----------------------------------
+
+ 172.28.3.134 ------chef-server
+ 172.28.3.111 ------Node
+
+https://github.com/kamleshnit07/kamlesh_Rep.git
+
+
+To get SSL truststed certificate
+------------------------------------
+[root@chef-server-kamlesh ~]# scp /var/opt/opscode/nginx/ca/172.28.3.134.crt root@172.28.3.111:/root/kamlesh/chef-repo/.chef/trusted_certs/
+root@172.28.3.111's password:
+172.28.3.134.crt                                                                                                                      100% 1354     1.3KB/s   00:00
+[root@chef-server-kamlesh ~]# ls -lrt
+
+unset https_proxy
+knife ssl fetch http://172.28.3.134 (chef server ip)
+
+
+[root@localhost cookbooks]# knife upload cookbook expert_chef_httpd
+Created expert_chef_httpd
+[root@localhost cookbooks]# knife upload cookbook learn_chef_httpd
+Created learn_chef_httpd
+
+To check cookbooks uploaded from node to chef server.
+> knife cookbook list
+
+to know nodes created:
+
+> knife node list
+
+
+-----install chef server WebUI -----
+
+chef-server-ctl install chef-manage
+Starting Chef Client, version 12.12.19
+----------------------------------------------------------------
+
+
+http://scmgalaxy.com/scm/configuration-management-tools/implement-chef-roles-using-chef-server.html
+
+
+
+http_proxy=http://172.28.1.12:9991/
+https_proxy=https://172.28.1.12:9991/
+
+
+
+-----------------------------downloading cookbook from super market -----------
+
+knife cookbook site download tomcat
+
+ gunzip tomcat-2.3.1.tar.gz
+ 
+ls -lart
+ 
+tar -xvf tomcat-2.3.1.tar
+
+
+
+
+
+
+
+
+
+
+
+
+
+-----------------------------Rjesh_repo-------------------
+
+http://www.scmgalaxy.com/scm/configuration-management-tools/chef-solo.html
+
+Chef solo
+Install chef
+============
+> curl -L https://www.opscode.com/chef/install.sh | bash
+ 
+Check
+=====
+> chef-solo -v
+ 
+Setup chef repository
+=====================
+> wget http://github.com/opscode/chef-repo/tarball/master
+ 
+> tar zxvf master
+ 
+> mv opscode-chef-repo-f9d4b0c/ chef-repo
+ 
+>ls chef-repo/
+ 
+Create .chef directory inside chef-repo
+=======================================
+> mkdir chef-repo/.chef
+ 
+Setup a local cookbook path
+===========================
+ 
+> vi chef-repo/.chef/knife.rb
+cookbook_path [ '/root/chef-repo/cookbooks' ]
+ 
+Create your first cookbook
+==========================
+ 
+> knife cookbook create ntp
+ 
+Writing your first recipe
+=========================
+> vi chef-repo/cookbooks/ntp/recipes/default.rb
+ 
+package 'ntp'
+ 
+Now configure your server using chef-solo
+=========================================
+> vi chef-repo/solo.rb
+ 
+file_cache_path "/root/chef-solo"
+cookbook_path "/root/chef-repo/cookbooks"
+ 
+> vi web.json
+ 
+{
+"run_list": [ "recipe[ntp]" ]
+}
+ 
+Ensure ntp is not installed
+===========================
+> yum remove -y ntp
+ 
+Use chef-solo to configure your server
+=====================================
+ 
+> chef-solo -c chef-repo/solo.rb -j chef-repo/web.json
+ 
+Confirm ntp is installed
+========================
+> yum info ntp
